@@ -17,8 +17,8 @@ if not os.path.exists(UPLOAD_FOLDER):
 model = tf.keras.models.load_model('models/Skin_disease.h5')
 
 @app.route("/", methods=['GET'])
-def index():
-    return send_from_directory('static', 'index.html')
+def home():
+    return "Server is running"
 
 @app.route("/api/upload", methods=['POST'])
 def upload_file():
@@ -51,4 +51,4 @@ def upload_file():
         return jsonify({"error": f"Error processing file: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
