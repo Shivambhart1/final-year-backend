@@ -14,7 +14,7 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # Loading the model
-model = tf.keras.models.load_model('models/Skin_disease.h5')
+model = tf.keras.models.load_model('models/Skin_disease.h5') 
 
 @app.route("/", methods=['GET'])
 def home():
@@ -45,6 +45,7 @@ def upload_file():
             "disease_name": diseaseName,
             "predictions": predictions  
         }
+        print(response)
         return jsonify(response), 200
 
     except Exception as e:
