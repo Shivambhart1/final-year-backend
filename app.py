@@ -49,7 +49,7 @@ def upload_file():
         return jsonify(response), 200
 
     except Exception as e:
-        return jsonify({"error": f"Error processing file: {str(e)}"}), 500
+        return jsonify({"error": f"Error processing file/(s): {str(e)}"}), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
