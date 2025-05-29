@@ -8,12 +8,10 @@ import os
 app = Flask(__name__, static_url_path='', static_folder='static')
 CORS(app)
 
-# Ensure the uploads folder exists
 UPLOAD_FOLDER = './uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Loading the model
 model = tf.keras.models.load_model('models/Skin_disease.h5') 
 
 @app.route("/", methods=['GET'])
@@ -30,11 +28,9 @@ def upload_file():
         return jsonify({"error": "No file selected"}), 400
 
     try:
-        # Save the uploaded file
         imagePath = os.path.join(UPLOAD_FOLDER, imageFile.filename)
         imageFile.save(imagePath)
 
-        # Prepare the image for the model
         preparedImage = prepareImage(imagePath)
 
 
